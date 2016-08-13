@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="poem"
+            type="com.hc.poem.page.list.viewmodel.PoemItemModel"/>
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@{poem.title}"
+                android:textSize="@dimen/txt_s5"
+                android:textColor="@color/c1"/>
+
+            <TextView
+                android:id="@+id/tv_sub_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{poem.subTitle}"
+                android:textSize="@dimen/txt_s5"
+                android:textColor="@color/c1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginBottom="4dp"
+            android:text="@{poem.author}"
+            android:textSize="@dimen/txt_s3"
+            android:textColor="@color/c2"/>
+
+        <TextView
+            android:id="@+id/tv_dynasty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="@dimen/margin_right"
+            android:text="@{poem.dynasty}"
+            android:textSize="@dimen/txt_s3"
+            android:textColor="@color/c2"/>
+
+    </RelativeLayout>
+
+</layout>

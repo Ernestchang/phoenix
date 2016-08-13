@@ -1,6 +1,3 @@
-# phoenix
-The art of ancient.
-
 
 使用已有的sqlite数据库文件
 http://www.reigndesign.com/blog/using-your-own-sqlite-database-in-android-applications/

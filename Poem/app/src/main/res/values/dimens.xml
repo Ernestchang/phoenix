@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- text size -->
+    <dimen name="txt_s1">11sp</dimen>
+    <dimen name="txt_s2">12sp</dimen>
+    <dimen name="txt_s3">13sp</dimen>
+    <dimen name="txt_s4">14sp</dimen>
+    <dimen name="txt_s5">15sp</dimen>
+    <dimen name="txt_s6">16sp</dimen>
+    <dimen name="txt_s7">17sp</dimen>
+    <dimen name="txt_s8">18sp</dimen>
+    <dimen name="txt_s9">19sp</dimen>
+
+    <!-- list size -->
+    <dimen name="list_item_height">52dp</dimen>
+
+    <!-- padding & margin -->
+    <dimen name="margin_left">16dp</dimen>
+    <dimen name="margin_top">16dp</dimen>
+    <dimen name="margin_right">16dp</dimen>
+    <dimen name="margin_bottom">16dp</dimen>
+
+    <!-- titleBar height -->
+    <dimen name="title_bar_height">56dp</dimen>
+
+</resources>

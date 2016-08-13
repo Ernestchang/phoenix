@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils"/>
+
+        <variable
+            name="model"
+            type="com.hc.poem.page.author.viewmodel.AuthorViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TitleBar -->
+        <RelativeLayout
+            android:id="@+id/layout_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            android:background="@color/c9">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:scaleType="center"
+                android:src="@drawable/selector_titlebar_back"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="@{model.authorName == null ? View.GONE : View.VISIBLE}"
+                android:text="@{model.authorName}"
+                android:textColor="@color/c3"
+                android:textSize="@dimen/txt_s6" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- poem list of an author -->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_author_poem_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                app:poemListAdapter="@{model.poemAdapter}"
+                app:poemListData="@{model.listPoems}" />
+
+            <!-- author introduce -->
+            <com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
+                android:id="@+id/recycler_author_poem_list_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top">
+                <WebView
+                    android:id="@+id/web_author_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{TextUtils.isEmpty(model.authorIntro) ? View.GONE : View.VISIBLE}"/>
+            </com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>
