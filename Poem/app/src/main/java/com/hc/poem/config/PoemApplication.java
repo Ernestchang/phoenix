@@ -8,9 +8,13 @@ import com.umeng.analytics.MobclickAgent;
 
 public class PoemApplication extends Application {
 
+    private static PoemApplication poemApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        poemApplication = this;
 
         // Init database.
         DbHelper.getSQLiteDb(this);
@@ -25,6 +29,10 @@ public class PoemApplication extends Application {
 
         // 初始化图片加载模式Fresco
         Fresco.initialize(this);
+    }
+
+    public static PoemApplication getInstance() {
+        return poemApplication;
     }
 
 }

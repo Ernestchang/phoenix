@@ -14,29 +14,11 @@
         android:orientation="vertical">
 
         <!-- TitleBar -->
-        <RelativeLayout
+        <com.hc.poem.widget.bar.TitleBar
             android:id="@+id/layout_title_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height"
-            android:background="@color/c9">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/app_name"
-                android:textColor="@color/c3"
-                android:textSize="@dimen/txt_s7" />
-
-            <ImageView
-                android:id="@+id/ic_search"
-                android:layout_width="@dimen/title_bar_height"
-                android:layout_height="@dimen/title_bar_height"
-                android:layout_alignParentRight="true"
-                android:onClick="onSearchClick"
-                android:scaleType="centerInside"
-                android:src="@drawable/selector_titlebar_search" />
-        </RelativeLayout>
+            android:background="@color/c9"/>
 
         <!-- Poem List -->
         <android.support.v7.widget.RecyclerView

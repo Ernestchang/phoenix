@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="bean"
+            type="com.hc.poem.page.content.viewmodel.PoemContentViewModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/root_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_bar_height">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:maxWidth="240dp"
+                    android:singleLine="true"
+                    android:text="@{bean.title}"
+                    android:textColor="@color/c3"
+                    android:textSize="@dimen/txt_s6" />
+
+                <TextView
+                    android:id="@+id/tv_sub_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{bean.subTitle}"
+                    android:textColor="@color/c3"
+                    android:textSize="@dimen/txt_s6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:text="@{bean.author}"
+                    android:textColor="@color/c2"
+                    android:textSize="@dimen/txt_s3" />
+
+                <TextView
+                    android:id="@+id/tv_dynasty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{bean.dynasty}"
+                    android:textColor="@color/c2"
+                    android:textSize="@dimen/txt_s3" />
+            </LinearLayout>
+        </RelativeLayout>
+    </FrameLayout>
+</layout>

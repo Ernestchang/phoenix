@@ -28,7 +28,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:scaleType="center"
-                android:src="@drawable/selector_titlebar_back"/>
+                android:src="@drawable/selector_title_bar_back"/>
 
             <TextView
                 android:id="@+id/tv_name"
