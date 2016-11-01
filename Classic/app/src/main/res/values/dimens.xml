@@ -27,4 +27,7 @@
     <!-- titleBar height -->
     <dimen name="title_bar_height">56dp</dimen>
 
+    <!-- bar -->
+    <dimen name="len_H_titlebar">46dp</dimen>
+
 </resources>
