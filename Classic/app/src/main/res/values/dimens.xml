@@ -4,15 +4,33 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- layout or item height -->
+    <!-- bar height -->
     <dimen name="title_bar_height">56dp</dimen>
     <dimen name="bottom_bar_height">48dp</dimen>
-    <dimen name="list_item_height_1">65dp</dimen>
+
+    <!-- list item height -->
+    <dimen name="list_item_height_1">65dp</dimen>    <!-- item with icon on the left, title and summary on the right -->
+    <dimen name="list_item_height_2">53dp</dimen>    <!-- item with icon on the left, title on the right, no summary -->
+    <dimen name="list_section_height">21dp</dimen>
+
+    <!-- input edit text height -->
+    <dimen name="search_input_height">27dp</dimen>    <!-- search input -->
+
+    <!-- layout height -->
+    <dimen name="layout_item_height_1">42dp</dimen>    <!-- normal item with icon on the left and title on the right -->
+    <dimen name="layout_item_height_2">83dp</dimen>    <!-- item display profile and nick name -->
+    <dimen name="layout_item_divider_height_top">14dp</dimen>
+    <dimen name="layout_item_divider_space_height_middle">19dp</dimen>
+
+    <!-- button height -->
+    <dimen name="button_height">45dp</dimen>
 
     <!-- line height -->
     <dimen name="line_height">1px</dimen>
 
     <!-- border width -->
-    <dimen name="border_width">2px</dimen>
+    <dimen name="border_width">2px</dimen>    <!-- button border -->
+
+    <dimen name="layout_item_padding_left">14dp</dimen>
 
 </resources>
