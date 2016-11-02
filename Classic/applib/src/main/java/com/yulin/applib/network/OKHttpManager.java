@@ -14,7 +14,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * http代理类 处理数据收发的核心类 依赖于Context emoney
+ * http代理类 处理数据收发的核心类 依赖于Context
  * 
  * @version 1.0
  *
@@ -25,9 +25,9 @@ public class OKHttpManager {
     /**
      * 上传文件
      * 
-     * @param url
-     * @param filePath
-     * @param handler
+     * @param url d
+     * @param filePath s
+     * @param tag d
      */
     public static void uploadFileRequst(String url, String filePath, String tag) {
         File file = new File(filePath);
@@ -66,8 +66,8 @@ public class OKHttpManager {
     /**
      * 根据文件名获取文件的MIME类型
      * 
-     * @param fileName
-     * @return
+     * @param fileName d
+     * @return d
      */
     public static String getMimeType(String fileName) {
         FileNameMap fileNameMap = URLConnection.getFileNameMap();

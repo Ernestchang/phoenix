@@ -3,7 +3,7 @@ package com.yulin.act.config;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
-import com.yulin.act.utils.Util;
+import com.yulin.act.util.Util;
 
 /**
  * Created by liulei0905 on 2016/11/1.

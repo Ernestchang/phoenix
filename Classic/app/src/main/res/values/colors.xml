@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- text color -->
+    <color name="t1">#ffffff</color>     <!-- title bar, time text on chat history, button text -->
+    <color name="t2">#b2b2b2</color>     <!-- list item time -->
+    <color name="t3">#9b9b9b</color>     <!-- list item content bellow title -->
+    <color name="t4">#929292</color>     <!-- bottom bar when normal -->
+    <color name="t5">#8e8e93</color>     <!-- edit text hint, list item section text -->
+    <color name="t6">#888888</color>     <!-- layout item content below title, right title, notice on page bg -->
+    <color name="t7">#737373</color>     <!-- moment time on moment page -->
+    <color name="t8">#606062</color>     <!-- notice, tip -->
+    <color name="t9">#555555</color>     <!-- index text -->
+    <color name="t10">#393939</color>    <!-- layout item name -->
+    <color name="t11">#000000</color>    <!-- list item title, button text -->
+
+    <color name="c1">#b71414</color>     <!-- list item tip of voice -->
+    <color name="c2">#0cab0a</color>     <!-- bottom bar when select -->
+    <color name="c3">#576b95</color>     <!-- nick name on moment -->
+
+    <!-- background color -->
+    <color name="b1">#ffffff</color>     <!-- page main content bg, input area bg, layout item bg -->
+    <color name="b2">#fcfcfc</color>     <!-- input area bg when page is chat -->
+    <color name="b3">#f9f9f9</color>     <!-- bottom bar layout bg -->
+    <color name="b4">#f8f8f8</color>     <!-- button bg when normal 2 -->
+    <color name="b5">#f5f5f7</color>     <!-- bottom bar layout bg when page is menu and bg is #efeff4 or when page is chat -->
+    <color name="b6">#f3f3f5</color>     <!-- comment bg -->
+    <color name="b7">#f0f0f6</color>     <!-- list section item bg -->
+    <color name="b8">#efeff4</color>     <!-- page head area bg, menu page base bg -->
+    <color name="b9">#ebebeb</color>     <!-- chat page bg -->
+    <color name="b10">#cecece</color>    <!-- time area layout bg -->
+    <color name="b11">#3b3b40</color>    <!-- title bar bottom area color -->
+    <color name="b12">#2c2b31</color>    <!-- title bar top area color -->
+    <color name="b13">#1aad19</color>    <!-- button bg when normal 1 -->
+
+    <!-- line and border color -->
+    <color name="l1">#e1e1df</color>     <!-- moment layout divider -->
+    <color name="l2">#dfdfdf</color>     <!-- button border -->
+    <color name="l3">#dddddd</color>     <!-- input edit text border -->
+    <color name="l4">#dadbdf</color>     <!-- edit text border -->
+    <color name="l5">#d9d9d9</color>     <!-- list item divider, layout item divider -->
+    <color name="l6">#d7d7d9</color>     <!-- input layout top line -->
+    <color name="l7">#d6d7dc</color>     <!-- input area bottom line -->
+    <color name="l8">#cccccc</color>     <!-- chat text layout border, profile photo layout border -->
+    <color name="l9">#cbcbcf</color>     <!-- notice bottom line -->
+    <color name="l10">#b2b2b2</color>    <!-- bottom bar top line -->
+    <color name="l11">#a7a7ab</color>    <!-- bottom bar top line when page is chat or menu -->
+
 </resources>

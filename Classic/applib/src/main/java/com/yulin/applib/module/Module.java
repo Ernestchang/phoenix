@@ -2,11 +2,10 @@ package com.yulin.applib.module;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
 import com.yulin.applib.page.Page;
@@ -24,27 +23,11 @@ import java.util.List;
  *
  * @version 1.0
  */
-public abstract class Module extends FragmentActivity {
+public abstract class Module extends AppCompatActivity {
 
     private static long lastKeyTime = 0;
     private PageManager mPageManager = null;
     private List<OnPageViewListener> mLstPageViewListeners = new ArrayList<OnPageViewListener>();
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        // super.onSaveInstanceState(outState, outPersistentState);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        receiveNewData(intent);
-    }
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +43,22 @@ public abstract class Module extends FragmentActivity {
     protected void beforeCreate(Bundle savedInstanceState) {
     }
 
-    public abstract void initModule();
-
-    public abstract void initData();
-
-    protected void receiveNewData(Intent intent) {
-
+    protected void receiveData(Intent intent) {
     }
 
-    public void receiveData(Intent intent) {
+    protected void initModule() {
+    }
+
+    protected void initData() {
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        receiveNewData(intent);
+    }
+
+    protected void receiveNewData(Intent intent) {
     }
 
     @Override
@@ -296,13 +286,12 @@ public abstract class Module extends FragmentActivity {
         }
     }
 
-
     public void finishToPage(PageIntent intent) {
-
         if (!getPageManager().popPageTopOf(intent)) {
             if (getPageManager().hasIntent(intent)) {
                 getPageManager().getTopIntent().getTargetInstance().dispatchNewIntent(intent);
             }
         }
     }
+
 }
