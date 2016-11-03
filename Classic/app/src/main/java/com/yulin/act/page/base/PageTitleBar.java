@@ -65,7 +65,7 @@ public abstract class PageTitleBar extends Page {
             // 沉浸式状态栏设置
             if (Utils.isKitkatUpVersion()) {
                 final int statusBarHeight = Util.getStatusBarHeight();
-                mTitleBar.getLayoutParams().height = (int) (statusBarHeight + Util.getRDimension(R.dimen.len_H_titlebar));
+                mTitleBar.getLayoutParams().height = (int) (statusBarHeight + Util.getRDimension(R.dimen.title_bar_height));
                 mTitleBar.setItemPaddings(0, statusBarHeight, 0, 0);
             }
 

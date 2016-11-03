@@ -27,7 +27,7 @@ public abstract class Module extends AppCompatActivity {
 
     private static long lastKeyTime = 0;
     private PageManager mPageManager = null;
-    private List<OnPageViewListener> mLstPageViewListeners = new ArrayList<OnPageViewListener>();
+    private List<OnPageViewListener> mLstPageViewListeners = new ArrayList<>();
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {

@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.yulin.classic.views.main.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    <data>
+        <variable
+            name="model"
+            type="com.yulin.act.page.main.viewmodel.MainViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/activity_main_layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/b1">
+
+        <LinearLayout
+            android:id="@+id/activity_main_layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_bar_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/b3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/activity_main_bottom_bar_item_tv_recent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="阅读"
+                android:textColor="@color/t4"
+                android:textSize="@dimen/txt_s1" />
+
+            <TextView
+                android:id="@+id/activity_main_bottom_bar_item_tv_category"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="分类"
+                android:textColor="@color/t4"
+                android:textSize="@dimen/txt_s1" />
+
+            <TextView
+                android:id="@+id/activity_main_bottom_bar_item_tv_me"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="我"
+                android:textColor="@color/t4"
+                android:textSize="@dimen/txt_s1" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/activity_main_bottom_bar_top_line"
+            style="@style/line_10"
+            android:layout_above="@id/activity_main_layout_bottom_bar" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/activity_main_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/activity_main_bottom_bar_top_line"
+            android:background="@color/b10" />
+
+    </RelativeLayout>
+
+</layout>
