@@ -13,56 +13,24 @@
         android:layout_height="match_parent"
         android:background="@color/b1">
 
-        <LinearLayout
+        <com.yulin.applib.bar.ToolBar
             android:id="@+id/activity_main_layout_bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_bar_height"
             android:layout_alignParentBottom="true"
-            android:background="@color/b3"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/activity_main_bottom_bar_item_tv_recent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="阅读"
-                android:textColor="@color/t4"
-                android:textSize="@dimen/txt_s1" />
-
-            <TextView
-                android:id="@+id/activity_main_bottom_bar_item_tv_category"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="分类"
-                android:textColor="@color/t4"
-                android:textSize="@dimen/txt_s1" />
-
-            <TextView
-                android:id="@+id/activity_main_bottom_bar_item_tv_me"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="我"
-                android:textColor="@color/t4"
-                android:textSize="@dimen/txt_s1" />
-        </LinearLayout>
+            android:background="@color/b3" />
 
         <View
             android:id="@+id/activity_main_bottom_bar_top_line"
             style="@style/line_10"
             android:layout_above="@id/activity_main_layout_bottom_bar" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/activity_main_view_pager"
+        <com.yulin.applib.widget.PageSwitcher
+            android:id="@+id/activity_main_pager_switcher"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/activity_main_bottom_bar_top_line"
-            android:background="@color/b10" />
+            android:background="@color/b1" />
 
     </RelativeLayout>
 

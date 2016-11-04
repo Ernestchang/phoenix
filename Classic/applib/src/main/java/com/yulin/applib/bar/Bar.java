@@ -86,7 +86,7 @@ public class Bar extends RelativeLayout {
     /**
      * 设置菜单项文字大小
      *
-     * @param size
+     * @param size 单位px
      */
     public void setItemTextSize(int size) {
         mItemTextSize = size;
@@ -160,10 +160,10 @@ public class Bar extends RelativeLayout {
         }
         tvItem.setGravity(Gravity.CENTER);
         if (textItem.getTextSize() > 0) {
-            tvItem.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textItem.getTextSize());
+            tvItem.setTextSize(TypedValue.COMPLEX_UNIT_PX, textItem.getTextSize());
         } else {
-            // tvItem.setTextSize(mItemTextSize);
-            tvItem.setTextSize(TypedValue.COMPLEX_UNIT_DIP, mItemTextSize);
+//             tvItem.setTextSize(mItemTextSize);
+            tvItem.setTextSize(TypedValue.COMPLEX_UNIT_PX, mItemTextSize);
         }
         tvItem.setOnClickListener(new View.OnClickListener() {
 
@@ -431,7 +431,7 @@ public class Bar extends RelativeLayout {
                 View view = textItem.getItemView();
                 if (view instanceof TextView) {
                     TextView tv = (TextView) view;
-                    tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, mItemTextSize);
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mItemTextSize);
                     if (mCurrIndex == i && isItemSelectable()) {
                         tv.setTextColor(mItemSelectedTextColor);
                     } else {

@@ -1,8 +1,5 @@
 package com.yulin.applib.widget;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +11,9 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.yulin.applib.module.Module;
 import com.yulin.applib.page.Page;
@@ -67,7 +67,7 @@ public class PageSwitcher extends ViewPager implements OnPageViewListener {
     }
 
     private void initPageChangeListener() {
-        setOnPageChangeListener(new OnPageChangeListener() {
+        addOnPageChangeListener(new OnPageChangeListener() {
 
             @Override
             public void onPageScrollStateChanged(int i) {
@@ -82,8 +82,10 @@ public class PageSwitcher extends ViewPager implements OnPageViewListener {
             public void onPageSelected(int index) {
                 // mLstPages.get(mCurrPageIndex).setUserVisibleHint(false);
                 // mLstPages.get(mCurrPageIndex).dispatchPagePause();
-                PageIntent intent = mParentPage.getPageIntent();
-                mParentPage.getPageManager().popPageTopOf(intent);
+                if (mParentPage != null) {
+                    PageIntent intent = mParentPage.getPageIntent();
+                    mParentPage.getPageManager().popPageTopOf(intent);
+                }
                 mCurrPageIndex = index;
                 // mLstPages.get(mCurrPageIndex).setUserVisibleHint(true);
                 // mLstPages.get(mCurrPageIndex).dispatchPageResume();
@@ -370,8 +372,8 @@ public class PageSwitcher extends ViewPager implements OnPageViewListener {
     // // TODO Auto-generated method stub
     // for(int i = 0; i < mLstPages.size(); i++)
     // {
-    // Page uibase = mLstPages.get(i);
-    // uibase.dispatchNewIntent(intent);
+    // Page page = mLstPages.get(i);
+    // page.dispatchNewIntent(intent);
     // }
     // }
     //
@@ -380,8 +382,8 @@ public class PageSwitcher extends ViewPager implements OnPageViewListener {
     // // TODO Auto-generated method stub
     // for(int i = 0; i < mLstPages.size(); i++)
     // {
-    // Page uibase = mLstPages.get(i);
-    // uibase.dispatchData(bundle);
+    // Page page = mLstPages.get(i);
+    // page.dispatchData(bundle);
     // }
     // }
 }

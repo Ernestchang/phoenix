@@ -46,7 +46,7 @@ public class BarMenuTextItem extends BarMenuItem{
 	
 	/**
 	 * 
-	 * @param textSize 单位dp
+	 * @param textSize 单位px
 	 */
 	public void setTextSize(int textSize)
 	{
