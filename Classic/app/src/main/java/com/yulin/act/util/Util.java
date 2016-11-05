@@ -18,6 +18,7 @@ public class Util {
     }
 
     //##############################################################################################   获取资源   ##########
+
     /**
      * 获取状态栏高度
      */
@@ -58,7 +59,7 @@ public class Util {
 
     /**
      * 获取指定资源id的颜色值
-     * */
+     */
     public static int getRColor(int resId) {
         return getRes().getColor(resId);
     }

@@ -1,10 +1,7 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    </style>
-
+    
     <style name="ColorTranslucentTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@color/b11</item>
     </style>
 
     <style name="line_10">

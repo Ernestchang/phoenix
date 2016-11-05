@@ -27,7 +27,7 @@ public class Bar extends RelativeLayout {
 
     protected int mItemSelectedTextColor = Color.BLACK;
     protected int mItemTextColor = Color.WHITE;
-    protected int mItemTextSize = 14;
+    protected int mItemTextSize = 44;
 
     protected BarMenuContainer mBarMenu = new BarMenuContainer();
     protected int mCurrIndex = 0;

@@ -3,6 +3,7 @@ package com.yulin.applib.bar;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -47,8 +48,8 @@ public class TitleBar extends Bar {
     }
 
     private void init() {
-        setItemTextSize(18);
-        setItemTextColor(0xfff8f8f8);
+        setItemTextSize(44);
+        setItemTextColor(Color.WHITE);
 
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         mLeftContent = new LinearLayout(getContext());

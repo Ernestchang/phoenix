@@ -3,9 +3,9 @@ package com.yulin.applib.module;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
 import com.yulin.applib.page.Page;
@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @version 1.0
  */
-public abstract class Module extends AppCompatActivity {
+public abstract class Module extends FragmentActivity {
 
     private static long lastKeyTime = 0;
     private PageManager mPageManager = null;

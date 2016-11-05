@@ -8,15 +8,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:background="@color/b1"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="活动"
-            android:textColor="@color/t11"
-            android:textSize="@dimen/txt_s6"/>
+        <com.yulin.applib.bar.TitleBar
+            android:id="@+id/page_activity_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            android:background="@color/b11"/>
 
     </LinearLayout>
 

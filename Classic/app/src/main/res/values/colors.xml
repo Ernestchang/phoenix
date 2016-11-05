@@ -33,7 +33,7 @@
     <color name="b8">#efeff4</color>     <!-- page head area bg, menu page base bg -->
     <color name="b9">#ebebeb</color>     <!-- chat page bg -->
     <color name="b10">#cecece</color>    <!-- time area layout bg -->
-    <color name="b11">#34394b</color>    <!-- title bar bg color -->
+    <color name="b11">#37373c</color>    <!-- title bar bg color -->
     <color name="b12">#1aad19</color>    <!-- button bg when normal 1 -->
 
     <!-- line and border color -->

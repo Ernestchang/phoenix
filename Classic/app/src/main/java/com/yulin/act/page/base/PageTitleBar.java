@@ -1,19 +1,16 @@
 package com.yulin.act.page.base;
 
-import com.yulin.act.util.Util;
 import com.yulin.applib.bar.Bar;
 import com.yulin.applib.bar.BarMenuContainer;
 import com.yulin.applib.bar.BarMenuItem;
 import com.yulin.applib.page.Page;
-import com.yulin.applib.utils.Utils;
-import com.yulin.classic.R;
 
 /**
  * 定义、绑定、添加、初始化页面标题栏
  * 1. 在layout中使用TitleBar自定义标签定义标题栏，设置宽高、位置及背景色
  * 2. 在初始化页面时添加绑定页面及定义的TitleBar
  * 3. 在resume时添加并初始化标题栏菜单项
- * */
+ */
 public abstract class PageTitleBar extends Page {
 
     private int mTitleBarId = -1;
@@ -61,13 +58,6 @@ public abstract class PageTitleBar extends Page {
 
             if (mTitleBar == null)
                 mTitleBar = (Bar) findViewById(mTitleBarId);
-
-            // 沉浸式状态栏设置
-            if (Utils.isKitkatUpVersion()) {
-                final int statusBarHeight = Util.getStatusBarHeight();
-                mTitleBar.getLayoutParams().height = (int) (statusBarHeight + Util.getRDimension(R.dimen.title_bar_height));
-                mTitleBar.setItemPaddings(0, statusBarHeight, 0, 0);
-            }
 
             if (mTitleBar != null) {
                 BarMenuContainer barMenuContainer = new BarMenuContainer();
