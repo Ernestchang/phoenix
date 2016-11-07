@@ -1,9 +1,12 @@
 package com.yulin.act.page.category.view;
 
 import android.databinding.DataBindingUtil;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 
 import com.yulin.act.page.base.PageImpl;
+import com.yulin.act.page.category.viewmodel.CategoryAdapter;
+import com.yulin.act.page.category.viewmodel.CategoryViewModel;
 import com.yulin.act.util.Util;
 import com.yulin.applib.bar.BarMenuContainer;
 import com.yulin.applib.bar.BarMenuTextItem;
@@ -19,6 +22,10 @@ public class CategoryPage extends PageImpl {
 
         PageCategoryBinding pageBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.page_category, null, false);
         setContentView(pageBinding.getRoot());
+
+        pageBinding.pageCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        pageBinding.setModel(new CategoryViewModel());
 
         bindPageTitleBar(R.id.page_category_title_bar);
     }
