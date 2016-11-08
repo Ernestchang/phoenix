@@ -3,9 +3,13 @@ package com.yulin.act.page.category.viewmodel;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.yulin.act.page.category.model.BaseItem;
+import com.yulin.act.page.category.model.NormalItem;
+import com.yulin.act.page.category.model.SectionItem;
+import com.yulin.classic.BR;
 import com.yulin.classic.R;
 import com.yulin.classic.databinding.ItemCategoryItemsBinding;
 import com.yulin.classic.databinding.ItemCategorySectionBinding;
@@ -16,7 +20,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<BaseItem> mListItems;
 
-    public CategoryAdapter(List<BaseItem> listItems) {
+    CategoryAdapter(List<BaseItem> listItems) {
         mListItems = listItems;
     }
 
@@ -37,17 +41,25 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new SectionViewHolder(itemSectionBinding);
         } else if (viewType == BaseItem.ITEM_TYPE_NORMAL) {
             ItemCategoryItemsBinding itemItemsBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_category_items, parent, false);
-            return new ItemViewHolder(itemItemsBinding);
+            return new NormalViewHolder(itemItemsBinding);
         } else {
-            return null;
+            View bottomView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category_bottom, parent, false);
+            return new BottomViewHolder(bottomView);
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof SectionViewHolder) {
-
-        } else if (holder instanceof ItemViewHolder) {
+            SectionItem sectionItem = (SectionItem) mListItems.get(position);
+            SectionViewHolder sectionViewHolder = (SectionViewHolder) holder;
+            sectionViewHolder.getBinding().setVariable(BR.model, sectionItem);
+            sectionViewHolder.getBinding().executePendingBindings();
+        } else if (holder instanceof NormalViewHolder) {
+            NormalItem normalItem = (NormalItem) mListItems.get(position);
+            NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
+            normalViewHolder.getBinding().setVariable(BR.model, normalItem);
+            normalViewHolder.getBinding().executePendingBindings();
         }
     }
 

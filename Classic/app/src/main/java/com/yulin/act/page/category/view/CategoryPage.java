@@ -1,10 +1,12 @@
 package com.yulin.act.page.category.view;
 
 import android.databinding.DataBindingUtil;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 
 import com.yulin.act.page.base.PageImpl;
+import com.yulin.act.page.category.model.BaseItem;
 import com.yulin.act.page.category.viewmodel.CategoryAdapter;
 import com.yulin.act.page.category.viewmodel.CategoryViewModel;
 import com.yulin.act.util.Util;
@@ -23,9 +25,24 @@ public class CategoryPage extends PageImpl {
         PageCategoryBinding pageBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.page_category, null, false);
         setContentView(pageBinding.getRoot());
 
-        pageBinding.pageCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        final CategoryViewModel categoryViewModel = new CategoryViewModel();
 
-        pageBinding.setModel(new CategoryViewModel());
+        pageBinding.pageCategoryRecyclerView.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int itemType = categoryViewModel.getItem(position).getItemType();
+                if (itemType == BaseItem.ITEM_TYPE_SECTION || itemType == BaseItem.ITEM_TYPE_BOTTOM) {
+                    return 4;
+                } else {
+                    return 1;
+                }
+            }
+        });
+        pageBinding.pageCategoryRecyclerView.setLayoutManager(gridLayoutManager);
+
+        pageBinding.setModel(categoryViewModel);
 
         bindPageTitleBar(R.id.page_category_title_bar);
     }

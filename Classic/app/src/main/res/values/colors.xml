@@ -15,7 +15,7 @@
     <color name="t7">#737373</color>     <!-- moment time on moment page -->
     <color name="t8">#606062</color>     <!-- notice, tip -->
     <color name="t9">#555555</color>     <!-- index text -->
-    <color name="t10">#393939</color>    <!-- layout item name -->
+    <color name="t10">#353535</color>    <!-- layout item name -->
     <color name="t11">#000000</color>    <!-- list item title, button text -->
 
     <color name="c1">#b71414</color>     <!-- list item tip of voice -->

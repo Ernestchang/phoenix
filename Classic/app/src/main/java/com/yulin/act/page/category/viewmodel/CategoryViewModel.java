@@ -19,7 +19,7 @@ public class CategoryViewModel {
     public CategoryViewModel() {
         mListItems = new ArrayList<>();
         initListItems();
-        mCategoryAdapter = new ObservableField<>(new CategoryAdapter());
+        mCategoryAdapter = new ObservableField<>(new CategoryAdapter(mListItems));
     }
 
     public ObservableField<CategoryAdapter> getCategoryAdapter() {
@@ -27,55 +27,89 @@ public class CategoryViewModel {
     }
 
     private void initListItems() {
-        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "前端开发"));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "HTML/CSS", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "JavaScript", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "jQuery", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Html5", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Node.js", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "AngularJs", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "WebApp", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Css", R.drawable.icon_js));
+        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "诗词曲赋"));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "诗经", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "古诗三百首", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "唐诗三百首", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "宋词三百首", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "元曲三百首", R.drawable.icon_js));
         mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
 
-        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "后端开发"));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "PHP", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Java", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Python", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "C", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "C++", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Go", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "C#", R.drawable.icon_js));
+        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "先秦诸子"));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "墨子", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "道德经", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "庄子", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "荀子", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "韩非子", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "鬼谷子", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "孙子兵法", R.drawable.icon_js));
         mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
 
-        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "移动开发"));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Android", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "iOS", R.drawable.icon_js));
+        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "四书五经"));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "大学", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "中庸", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "论语", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "孟子", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "诗经", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "尚书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "礼记", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "周易", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "春秋", R.drawable.icon_js));
         mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
 
-        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "数据库"));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "MySQL", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "MongoDB", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Oracle", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "SQL Server", R.drawable.icon_js));
+        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "二十四史"));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "史记", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "汉书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "后汉书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "三国志", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "晋书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "宋书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "南齐书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "梁书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "陈书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "魏书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "北齐书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "周书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "隋书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "南史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "北史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "旧唐书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "新唐书", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "旧五代史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "新五代史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "宋史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "辽史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "金史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "元史", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "明史", R.drawable.icon_js));
         mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
 
-        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "云计算&大数据"));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "云计算", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "大数据", R.drawable.icon_js));
+        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "编年史等"));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "春秋左传", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "战国策", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "资治通鉴", R.drawable.icon_js));
         mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
 
-        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "运维&测试"));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Linux", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "测试", R.drawable.icon_js));
+        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "启蒙经典"));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "三字经", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "百家姓", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "千字文", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "弟子规", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "千家诗", R.drawable.icon_js));
+        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "增广贤文", R.drawable.icon_js));
         mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
+    }
 
-        mListItems.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, "视觉设计"));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Photoshop", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Premiere", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "Maya", R.drawable.icon_js));
-        mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "ZBrush", R.drawable.icon_js));
-        mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
+    public List<BaseItem> getItems() {
+        return mListItems;
+    }
+
+    public BaseItem getItem(int position) {
+        if (mListItems != null && mListItems.size() > position) {
+            return mListItems.get(position);
+        }
+
+        return null;
     }
 
 }

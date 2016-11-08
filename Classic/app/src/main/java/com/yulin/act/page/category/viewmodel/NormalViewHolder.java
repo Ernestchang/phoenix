@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.yulin.classic.databinding.ItemCategoryItemsBinding;
 
-class ItemViewHolder extends RecyclerView.ViewHolder {
+class NormalViewHolder extends RecyclerView.ViewHolder {
 
     private ItemCategoryItemsBinding mBinding;
 
-    public ItemViewHolder(ItemCategoryItemsBinding binding) {
+    public NormalViewHolder(ItemCategoryItemsBinding binding) {
         super(binding.getRoot());
 
         mBinding = binding;
