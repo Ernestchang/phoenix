@@ -22,9 +22,4 @@ public class NormalItem extends BaseItem {
         return mItemIconId.get();
     }
 
-    @Override
-    public boolean isNormalItem() {
-        return true;
-    }
-
 }

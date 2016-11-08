@@ -2,37 +2,46 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="com.yulin.act.page.category.model.NormalItem"/>
+        <import type="com.yulin.act.page.category.model.NormalItem" />
+
         <variable
             name="model"
-            type="NormalItem"/>
+            type="NormalItem" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/layout_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="76dp">
+
+        <View
+            android:id="@+id/layout_select"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/selector_layout_item"
+            android:layout_centerInParent="true"/>
 
         <ImageView
             android:id="@+id/iv_item_icon"
             android:layout_width="27dp"
             android:layout_height="27dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
-            android:src="@{model.itemIconId}"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:src="@{model.itemIconId}" />
 
         <TextView
             android:id="@+id/tv_item_title"
-            android:layout_width="match_parent"
+            android:layout_width="76dp"
             android:layout_height="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/iv_item_icon"
             android:layout_marginTop="7dp"
-            android:layout_marginBottom="11dp"
             android:gravity="center"
             android:text="@{model.itemTitle}"
-            android:textSize="@dimen/txt_s2"
-            android:textColor="@color/t11"/>
+            android:textColor="@color/t11"
+            android:textSize="@dimen/txt_s2" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </layout>

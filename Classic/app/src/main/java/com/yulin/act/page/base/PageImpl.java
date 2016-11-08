@@ -24,6 +24,13 @@ public class PageImpl extends PageTitleBar {
      */
     private Runnable mAutoRequestTask;
 
+    /**
+     * 标记当前page是否销毁
+     *
+     * 0表示未销毁，-1表示已销毁
+     * */
+    protected int mPageChangeFlag = 0;
+
     @Override
     protected void initPage() {
         mAutoRequestHandler = new Handler();
@@ -31,6 +38,13 @@ public class PageImpl extends PageTitleBar {
 
     @Override
     protected void initData() {
+    }
+
+    @Override
+    protected void onPageResume() {
+        super.onPageResume();
+
+        mPageChangeFlag = 0;
     }
 
     @Override

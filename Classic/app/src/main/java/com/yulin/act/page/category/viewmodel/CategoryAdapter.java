@@ -5,10 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.yulin.act.page.category.model.BaseItem;
 import com.yulin.act.page.category.model.NormalItem;
 import com.yulin.act.page.category.model.SectionItem;
+import com.yulin.act.page.smenu.view.ShortMenuActivity;
+import com.yulin.act.util.Util;
+import com.yulin.applib.page.Page;
 import com.yulin.classic.BR;
 import com.yulin.classic.R;
 import com.yulin.classic.databinding.ItemCategoryItemsBinding;
@@ -19,19 +23,16 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<BaseItem> mListItems;
+    private Page mPage;
 
-    CategoryAdapter(List<BaseItem> listItems) {
+    CategoryAdapter(List<BaseItem> listItems, Page page) {
         mListItems = listItems;
+        mPage = page;
     }
 
     @Override
     public int getItemViewType(int position) {
-        BaseItem item = mListItems == null ? null : mListItems.get(position);
-        if (item != null) {
-            return item.getItemType();
-        }
-
-        return 0;
+        return mListItems.get(position).getItemType();
     }
 
     @Override
@@ -56,10 +57,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             sectionViewHolder.getBinding().setVariable(BR.model, sectionItem);
             sectionViewHolder.getBinding().executePendingBindings();
         } else if (holder instanceof NormalViewHolder) {
-            NormalItem normalItem = (NormalItem) mListItems.get(position);
+            final NormalItem normalItem = (NormalItem) mListItems.get(position);
             NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
             normalViewHolder.getBinding().setVariable(BR.model, normalItem);
             normalViewHolder.getBinding().executePendingBindings();
+
+            normalViewHolder.getBinding().layoutSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShortMenuActivity.gotoModule(mPage);
+                }
+            });
         }
     }
 

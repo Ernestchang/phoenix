@@ -8,7 +8,7 @@ class SectionViewHolder extends RecyclerView.ViewHolder {
 
     private ItemCategorySectionBinding mBinding;
 
-    public SectionViewHolder(ItemCategorySectionBinding binding) {
+    SectionViewHolder(ItemCategorySectionBinding binding) {
         super(binding.getRoot());
 
         mBinding = binding;

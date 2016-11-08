@@ -7,7 +7,7 @@ import com.yulin.classic.databinding.ItemCategorySectionBinding;
 
 class BottomViewHolder extends RecyclerView.ViewHolder {
 
-    public BottomViewHolder(View view) {
+    BottomViewHolder(View view) {
         super(view);
     }
 

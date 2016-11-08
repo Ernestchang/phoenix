@@ -6,6 +6,7 @@ import com.yulin.act.page.category.model.BaseItem;
 import com.yulin.act.page.category.model.BottomItem;
 import com.yulin.act.page.category.model.NormalItem;
 import com.yulin.act.page.category.model.SectionItem;
+import com.yulin.applib.page.Page;
 import com.yulin.classic.R;
 
 import java.util.ArrayList;
@@ -15,11 +16,13 @@ public class CategoryViewModel {
 
     private List<BaseItem> mListItems;
     private ObservableField<CategoryAdapter> mCategoryAdapter;
+    private Page mPage;
 
-    public CategoryViewModel() {
+    public CategoryViewModel(Page page) {
         mListItems = new ArrayList<>();
         initListItems();
-        mCategoryAdapter = new ObservableField<>(new CategoryAdapter(mListItems));
+        mPage = page;
+        mCategoryAdapter = new ObservableField<>(new CategoryAdapter(mListItems, page));
     }
 
     public ObservableField<CategoryAdapter> getCategoryAdapter() {
@@ -98,10 +101,6 @@ public class CategoryViewModel {
         mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "千家诗", R.drawable.icon_js));
         mListItems.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, "增广贤文", R.drawable.icon_js));
         mListItems.add(new BottomItem(BaseItem.ITEM_TYPE_BOTTOM));
-    }
-
-    public List<BaseItem> getItems() {
-        return mListItems;
     }
 
     public BaseItem getItem(int position) {

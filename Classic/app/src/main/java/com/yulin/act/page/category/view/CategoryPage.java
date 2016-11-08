@@ -25,7 +25,7 @@ public class CategoryPage extends PageImpl {
         PageCategoryBinding pageBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.page_category, null, false);
         setContentView(pageBinding.getRoot());
 
-        final CategoryViewModel categoryViewModel = new CategoryViewModel();
+        final CategoryViewModel categoryViewModel = new CategoryViewModel(this);
 
         pageBinding.pageCategoryRecyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);

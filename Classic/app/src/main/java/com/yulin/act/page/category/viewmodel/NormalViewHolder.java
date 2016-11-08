@@ -8,7 +8,7 @@ class NormalViewHolder extends RecyclerView.ViewHolder {
 
     private ItemCategoryItemsBinding mBinding;
 
-    public NormalViewHolder(ItemCategoryItemsBinding binding) {
+    NormalViewHolder(ItemCategoryItemsBinding binding) {
         super(binding.getRoot());
 
         mBinding = binding;

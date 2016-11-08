@@ -8,16 +8,12 @@ public class BaseItem {
 
     private short mItemType;
 
-    public BaseItem(short itemType) {
+    BaseItem(short itemType) {
         mItemType = itemType;
     }
 
     public short getItemType() {
         return mItemType;
-    }
-
-    public boolean isNormalItem() {
-        return false;
     }
 
 }
