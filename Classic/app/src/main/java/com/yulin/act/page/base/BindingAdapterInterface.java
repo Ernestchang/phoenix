@@ -6,12 +6,18 @@ import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
-import com.yulin.act.page.category.viewmodel.CategoryAdapter;
+import com.yulin.act.page.main.category.viewmodel.CategoryAdapter;
+import com.yulin.act.page.menu.grid.vm.ShortMenuAdapter;
 
 public class BindingAdapterInterface {
 
     @BindingAdapter("recyclerAdapter")
     public static void setRecyclerAdapter(RecyclerView recyclerView, CategoryAdapter adapter) {
+        recyclerView.setAdapter(adapter);
+    }
+
+    @BindingAdapter("recyclerAdapter")
+    public static void setRecyclerAdapter(RecyclerView recyclerView, ShortMenuAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
 

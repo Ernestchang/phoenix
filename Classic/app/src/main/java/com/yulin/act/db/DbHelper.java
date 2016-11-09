@@ -16,7 +16,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DbHelper";
 
-    private static final String DB_NAME = "poem.db";
+    private static final String DB_NAME = "classic.db";
     private static final int DB_VERSION = 1;
 
     private static DbHelper mInstance;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.yulin.act.page.category.model.NormalItem" />
+
+        <variable
+            name="model"
+            type="NormalItem" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <View
+            android:id="@+id/layout_select"
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:background="@drawable/selector_layout_item"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@{model.itemTitle}"
+            android:textColor="@color/t11"
+            android:textSize="@dimen/txt_s2" />
+
+    </RelativeLayout>
+
+</layout>

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.yulin.act.page.smenu.vm.ShortMenuViewModel" />
 
+        <variable
+            name="model"
+            type="ShortMenuViewModel" />
     </data>
 
     <LinearLayout
@@ -15,8 +20,13 @@
             android:id="@+id/page_short_menu_title_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height"
-            android:background="@color/b11"/>
+            android:background="@color/b11" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/page_short_menu_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:recyclerAdapter="@{model.shortMenuAdapter}"/>
     </LinearLayout>
 
 </layout>

@@ -13,4 +13,10 @@
         <item name="android:background">@color/l10</item>
     </style>
 
+    <style name="line_2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/l2</item>
+    </style>
+
 </resources>
