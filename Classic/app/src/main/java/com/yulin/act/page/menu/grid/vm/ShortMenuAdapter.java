@@ -9,22 +9,22 @@ import android.view.ViewGroup;
 import com.yulin.act.model.BaseItem;
 import com.yulin.act.model.NormalItem;
 import com.yulin.act.model.SectionItem;
-import com.yulin.act.page.main.category.viewmodel.BottomViewHolder;
 import com.yulin.act.page.content.poem.view.PoemContentActivity;
+import com.yulin.act.page.main.category.viewmodel.BottomViewHolder;
 import com.yulin.applib.page.Page;
 import com.yulin.classic.BR;
 import com.yulin.classic.R;
 import com.yulin.classic.databinding.ItemShortMenuNormalBinding;
 import com.yulin.classic.databinding.ItemShortMenuSectionBinding;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ShortMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<BaseItem> mListItems;
+    private ArrayList<BaseItem> mListItems;
     private Page mPage;
 
-    ShortMenuAdapter(List<BaseItem> listItems, Page page) {
+    ShortMenuAdapter(ArrayList<BaseItem> listItems, Page page) {
         mListItems = listItems;
         mPage = page;
     }

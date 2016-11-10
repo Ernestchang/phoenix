@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.yulin.act.config.DataModule;
+import com.yulin.act.model.Result;
 import com.yulin.act.page.base.PageImpl;
 import com.yulin.act.model.BaseItem;
 import com.yulin.act.page.menu.grid.vm.ShortMenuViewModel;
@@ -21,7 +22,11 @@ import com.yulin.applib.page.PageIntent;
 import com.yulin.classic.R;
 import com.yulin.classic.databinding.PageShortMenuBinding;
 
+import rx.Observer;
+
 public class GridMenuPage extends PageImpl {
+
+    private ShortMenuViewModel mShortMenuViewModel;
 
     @Override
     protected void initPage() {
@@ -30,14 +35,14 @@ public class GridMenuPage extends PageImpl {
         PageShortMenuBinding pageBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.page_short_menu, null, false);
         setContentView(pageBinding.getRoot());
 
-        final ShortMenuViewModel shortMenuViewModel = new ShortMenuViewModel(this);
+        mShortMenuViewModel = new ShortMenuViewModel(this);
 
         pageBinding.pageShortMenuRecyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                int itemType = shortMenuViewModel.getItem(position).getItemType();
+                int itemType = mShortMenuViewModel.getItem(position).getItemType();
                 if (itemType == BaseItem.ITEM_TYPE_SECTION || itemType == BaseItem.ITEM_TYPE_BOTTOM) {
                     return 4;
                 } else {
@@ -47,9 +52,38 @@ public class GridMenuPage extends PageImpl {
         });
         pageBinding.pageShortMenuRecyclerView.setLayoutManager(gridLayoutManager);
 
-        pageBinding.setModel(shortMenuViewModel);
+        pageBinding.setModel(mShortMenuViewModel);
 
         bindPageTitleBar(R.id.page_short_menu_title_bar);
+    }
+
+    @Override
+    protected void onPageDestroy() {
+        super.onPageDestroy();
+
+        mShortMenuViewModel.clearSubscription();
+    }
+
+    @Override
+    protected void onPageResume() {
+        super.onPageResume();
+
+        mShortMenuViewModel.queryMenu(new Observer<Result>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Result result) {
+
+            }
+        });
     }
 
     @Override

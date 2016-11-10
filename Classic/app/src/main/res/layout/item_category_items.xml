@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="com.yulin.act.page.category.model.NormalItem" />
+        <import type="com.yulin.act.model.NormalItem" />
 
         <variable
             name="model"

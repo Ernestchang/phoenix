@@ -1,11 +1,13 @@
 package com.yulin.act.page.base;
 
 import android.databinding.BindingAdapter;
+import android.databinding.ObservableArrayList;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
+import com.yulin.act.model.BaseItem;
 import com.yulin.act.page.main.category.viewmodel.CategoryAdapter;
 import com.yulin.act.page.menu.grid.vm.ShortMenuAdapter;
 
@@ -21,10 +23,10 @@ public class BindingAdapterInterface {
         recyclerView.setAdapter(adapter);
     }
 
-//    @android.databinding.BindingAdapter({"recyclerData"})
-//    public static void setRecyclerData(RecyclerView recyclerView, ObservableArrayList<RankItemViewModel> lstRankItemBean) {
-//        recyclerView.getAdapter().notifyDataSetChanged();
-//    }
+    @BindingAdapter({"recyclerData"})
+    public static void setRecyclerData(RecyclerView recyclerView, ObservableArrayList<BaseItem> listItems) {
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
 
     @BindingAdapter("android:src")
     public static void setImageUri(ImageView view, String imageUri) {

@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="com.yulin.act.page.category.model.SectionItem" />
+        <import type="com.yulin.act.model.SectionItem" />
 
         <variable
             name="model"
