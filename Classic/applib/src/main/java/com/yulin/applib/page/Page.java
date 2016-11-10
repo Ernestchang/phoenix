@@ -197,8 +197,8 @@ public abstract class Page extends Fragment implements PageAnimationI, PageBarI,
         mPageContainer = container;
         beforeCreate();
         initPageTag();
-        initPage();
         dispatchData(getArguments());
+        initPage();
         initData();
 
         return mContentView;

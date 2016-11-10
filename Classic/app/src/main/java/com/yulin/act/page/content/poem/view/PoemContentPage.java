@@ -1,30 +1,34 @@
 package com.yulin.act.page.content.poem.view;
 
 import android.databinding.DataBindingUtil;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.View;
 
-import com.yulin.act.config.DataModule;
+import com.yulin.act.model.PoemContent;
+import com.yulin.act.model.Result;
 import com.yulin.act.page.base.PageImpl;
-import com.yulin.act.util.Util;
-import com.yulin.applib.bar.BarMenuContainer;
-import com.yulin.applib.bar.BarMenuCustomItem;
-import com.yulin.applib.bar.BarMenuItem;
-import com.yulin.applib.bar.BarMenuTextItem;
-import com.yulin.applib.bar.TitleBar;
-import com.yulin.applib.module.Module;
-import com.yulin.applib.page.PageIntent;
+import com.yulin.act.page.content.poem.vm.PoemContentVm;
 import com.yulin.classic.R;
 import com.yulin.classic.databinding.PagePoemContentBinding;
+
+import rx.Observer;
 
 /**
  * Created by liulei0905 on 2016/11/9.
  * <p>
  * 显示诗、词、曲内容
+ * <p>
+ * 内容元素：标题、作者、内容、朝代
+ * <p>
+ * 布局设计：
+ * 标题、作者、朝代显示在titlebar中，标题居中大字号显示，朝代和作者显示在标题下方，小字显示
  */
 
 public class PoemContentPage extends PageImpl {
+
+    private int mContentId;
+    private boolean mIsContentLoadComplete;
+
+    private PoemContentVm mContentVm;
 
     @Override
     protected void initPage() {
@@ -33,49 +37,47 @@ public class PoemContentPage extends PageImpl {
         PagePoemContentBinding pageBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.page_poem_content, null, false);
         setContentView(pageBinding.getRoot());
 
-        bindPageTitleBar(R.id.page_poem_content_title_bar);
+        mContentVm = new PoemContentVm();
+        pageBinding.setModel(mContentVm.getPoemContent());
     }
 
     @Override
-    protected boolean onCreatePageTitleBarMenu(BarMenuContainer menu) {
-        View leftView = View.inflate(Util.getContext(), R.layout.layout_titlebar_left_back, null);
-        BarMenuCustomItem leftMenu = new BarMenuCustomItem(0, leftView);
-        leftMenu.setTag(TitleBar.Position.LEFT);
-        menu.addItem(leftMenu);
+    protected void onPageResume() {
+        super.onPageResume();
 
-        BarMenuTextItem centerMenu = new BarMenuTextItem(1, "诗经");
-        centerMenu.setTag(TitleBar.Position.CENTER);
-        centerMenu.setTextSize(Util.getRDimensionPixelSize(R.dimen.txt_s5));
-        menu.addItem(centerMenu);
+        if (!mIsContentLoadComplete) {
+            mContentVm.queryPoemContent(new Observer<Result>() {
+                @Override
+                public void onCompleted() {
+                    mIsContentLoadComplete = true;
+                }
 
-        return true;
-    }
+                @Override
+                public void onError(Throwable e) {
 
-    @Override
-    protected void onPageTitleBarMenuItemSelected(BarMenuItem menuItem) {
-        super.onPageTitleBarMenuItemSelected(menuItem);
+                }
 
-        int menuId = menuItem.getItemId();
+                @Override
+                public void onNext(Result result) {
 
-        if (menuId == 0 && mPageChangeFlag == 0) {
-            mPageChangeFlag = -1;
-            finish();
+                }
+            }, mContentId);
         }
     }
 
-    public static void startPage(Module module) {
-        PageIntent pageIntent = new PageIntent(null, PoemContentPage.class);
-        pageIntent.setSupportAnimation(false);
-        module.startPage(DataModule.G_CURRENT_FRAME, pageIntent);
+    @Override
+    protected void onPageDestroy() {
+        super.onPageDestroy();
+
+        mContentVm.clearSubscription();
     }
 
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-        }
+    public void setContentId(int id) {
+        mContentId = id;
+    }
 
-        return true;
+    public PoemContent getPoemContent() {
+        return mContentVm.getPoemContent();
     }
 
 }

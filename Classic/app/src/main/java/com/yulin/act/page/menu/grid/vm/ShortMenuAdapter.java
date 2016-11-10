@@ -61,10 +61,11 @@ public class ShortMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             normalViewHolder.getBinding().setVariable(BR.model, normalItem);
             normalViewHolder.getBinding().executePendingBindings();
 
+            final int index = position;
             normalViewHolder.getBinding().layoutSelect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PoemContentActivity.gotoModule(mPage);
+                    PoemContentActivity.gotoModule(mPage, getContentIds(), getCurrentIndex(index));
                 }
             });
         }
@@ -73,6 +74,30 @@ public class ShortMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public int getItemCount() {
         return mListItems == null ? 0 : mListItems.size();
+    }
+
+    private ArrayList<Integer> getContentIds() {
+        ArrayList<Integer> listContentIds = new ArrayList<>();
+
+        for (int i = 0; i < mListItems.size(); i++) {
+            BaseItem item = mListItems.get(i);
+            if (item instanceof NormalItem) {
+                NormalItem normalItem = (NormalItem) item;
+                listContentIds.add(normalItem.getContentId());
+            }
+        }
+
+        return listContentIds;
+    }
+
+    private int getCurrentIndex(int position) {
+        int sectionItemCount = 0;
+        for (int i = 0; i < position; i++) {
+            BaseItem item = mListItems.get(i);
+            if (item instanceof SectionItem) sectionItemCount++;
+        }
+
+        return position - sectionItemCount >= 0 ? position - sectionItemCount : 0;
     }
 
 }

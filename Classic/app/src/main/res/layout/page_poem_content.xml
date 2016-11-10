@@ -2,20 +2,34 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
+        <import type="com.yulin.act.model.PoemContent" />
+
+        <variable
+            name="model"
+            type="PoemContent" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/b1"
-        android:orientation="vertical">
+        android:background="@color/b3">
 
-        <com.yulin.applib.bar.TitleBar
-            android:id="@+id/page_poem_content_title_bar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/title_bar_height"
-            android:background="@color/b11" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:text="@{model.content}"
+                android:textColor="@color/t12"
+                android:textSize="@dimen/txt_s5" />
+        </LinearLayout>
+
+    </ScrollView>
 
 </layout>

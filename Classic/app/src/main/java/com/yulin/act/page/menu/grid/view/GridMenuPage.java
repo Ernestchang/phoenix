@@ -27,6 +27,7 @@ import rx.Observer;
 public class GridMenuPage extends PageImpl {
 
     private ShortMenuViewModel mShortMenuViewModel;
+    private boolean mIsMenuLoadComplete;
 
     @Override
     protected void initPage() {
@@ -58,32 +59,34 @@ public class GridMenuPage extends PageImpl {
     }
 
     @Override
+    protected void onPageResume() {
+        super.onPageResume();
+
+        if (!mIsMenuLoadComplete) {
+            mShortMenuViewModel.queryMenu(new Observer<Result>() {
+                @Override
+                public void onCompleted() {
+                    mIsMenuLoadComplete = true;
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Result result) {
+
+                }
+            });
+        }
+    }
+
+    @Override
     protected void onPageDestroy() {
         super.onPageDestroy();
 
         mShortMenuViewModel.clearSubscription();
-    }
-
-    @Override
-    protected void onPageResume() {
-        super.onPageResume();
-
-        mShortMenuViewModel.queryMenu(new Observer<Result>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Result result) {
-
-            }
-        });
     }
 
     @Override

@@ -1,5 +1,15 @@
 package com.yulin.act.db;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.yulin.act.model.PoemContent;
+import com.yulin.act.util.Util;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
+
 /**
  * handle table poems
  */
@@ -40,46 +50,60 @@ public class PoemHelper {
 //
 //        return list;
 //    }
-//
-//    /**
-//     * 根据id，获取指定诗词的内容
-//     * */
-//    public static PoemContentBean getPoemById(Context context, int poemId) {
-//        SQLiteDatabase db = DbHelper.getSQLiteDb(context);
-//
-//        PoemContentBean bean = null;
-//
-//        try {
-//            String sql = "SELECT p._id, p.title, p.subtitle, a.name, d.name, g.name, p.introduction, p.content" +
-//                    " FROM poems p " +
-//                    "JOIN author a ON p.author_id = a._id " +
-//                    "JOIN genre g ON p.genre_id = g._id " +
-//                    "JOIN dynasty d ON p.dynasty_id = d._id " +
-//                    "WHERE p._id = ? ";
-//            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(poemId)});
-//            while (cursor.moveToNext()) {
-//                bean = new PoemContentBean(
-//                        cursor.getInt(0),
-//                        cursor.getString(1),
-//                        cursor.getString(2),
-//                        cursor.getString(3),
-//                        cursor.getString(4),
-//                        cursor.getString(5),
-//                        cursor.getString(6),
-//                        cursor.getString(7)
-//                );
-//            }
-//            cursor.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (db != null)
-//                db.close();
-//        }
-//
-//        return bean;
-//    }
-//
+
+    /**
+     * 根据诗词id，获取指定诗词的内容
+     * */
+    public static Observable<PoemContent> getPoemContentById(final int poemId) {
+        return Observable.create(
+                new Observable.OnSubscribe<PoemContent>() {
+                    @Override
+                    public void call(Subscriber<? super PoemContent> subscriber) {
+                        SQLiteDatabase db = DbHelper.getSQLiteDb(Util.getContext());
+
+                        try {
+                            String sql = "SELECT p._id, p.title, p.subtitle, a.name, d.name, g.name, p.introduction, p.content" +
+                                    " FROM poems p " +
+                                    "JOIN author a ON p.author_id = a._id " +
+                                    "JOIN genre g ON p.genre_id = g._id " +
+                                    "JOIN dynasty d ON p.dynasty_id = d._id " +
+                                    "WHERE p._id = ? ";
+                            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(poemId)});
+
+                            PoemContent poemContent = null;
+                            while (cursor.moveToNext()) {
+                                poemContent = new PoemContent(
+                                        cursor.getInt(0),
+                                        cursor.getString(1),
+                                        cursor.getString(2),
+                                        cursor.getString(3),
+                                        cursor.getString(4),
+                                        cursor.getString(5),
+                                        cursor.getString(6),
+                                        cursor.getString(7)
+                                );
+                            }
+                            cursor.close();
+
+                            if (poemContent == null) poemContent = new PoemContent();
+
+                            subscriber.onNext(poemContent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
+                            subscriber.onError(e);
+                        } finally {
+                            if (db != null)
+                                db.close();
+
+                            subscriber.onCompleted();
+                        }
+                    }
+                }
+        )
+                .subscribeOn(Schedulers.io());
+    }
+
 //    /**
 //     * 根据模糊查询条件，获取诗词列表
 //     * 模糊查询诗人、标题
