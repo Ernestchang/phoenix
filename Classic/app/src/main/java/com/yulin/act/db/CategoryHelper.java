@@ -44,7 +44,7 @@ public class CategoryHelper {
                                     "LEFT JOIN category c2 " +
                                     "ON c2.parent_id = c1._id " +
                                     "WHERE c1.parent_id = 0 " +
-                                    "ORDER BY c1.parent_id";
+                                    "ORDER BY c2.parent_id, c2._id";
                             Cursor cursor = db.rawQuery(sql, null);
 
                             // 记录前一个item的sectionName，默认为空

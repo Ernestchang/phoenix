@@ -128,7 +128,8 @@ public class PoemHelper {
                                     "FROM poems p " +
                                     "JOIN category c1 ON c1._id = p.category_id " +
                                     "LEFT JOIN category c2 ON c1.parent_id = c2._id " +
-                                    "WHERE collection_id == " + categoryId;
+                                    "WHERE collection_id == " + categoryId + " " +
+                                    "ORDER BY p.category_id, p._id";
                             Cursor cursor = db.rawQuery(sql, null);
 
                             // 记录前一个item的sectionName，默认为空
@@ -147,8 +148,12 @@ public class PoemHelper {
                                 * */
 
                                 if (!sectionName.equals(preSectionName)) {
-                                    // 国风·召南
-                                    list.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, sectionTitle + "·" + sectionName));
+                                    if (categoryId == 22) {
+                                        // 国风·召南
+                                        list.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, sectionTitle + "·" + sectionName));
+                                    } else {
+                                        list.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, sectionName));
+                                    }
                                 }
                                 list.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, itemId, itemTitle));
 
