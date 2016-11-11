@@ -26,9 +26,11 @@ import rx.Observer;
 public class PoemContentPage extends PageImpl {
 
     private int mContentId;
+    private int mPageIndex;
     private boolean mIsContentLoadComplete;
 
     private PoemContentVm mContentVm;
+    private PoemContentHome.OnTitleBarContentChanged mOnTitleBarContentChanged;
 
     @Override
     protected void initPage() {
@@ -50,6 +52,10 @@ public class PoemContentPage extends PageImpl {
                 @Override
                 public void onCompleted() {
                     mIsContentLoadComplete = true;
+
+                    if (mOnTitleBarContentChanged != null) {
+                        mOnTitleBarContentChanged.changeTitleBarContent(mContentVm.getPoemContent().getTitle(), mPageIndex);
+                    }
                 }
 
                 @Override
@@ -78,6 +84,14 @@ public class PoemContentPage extends PageImpl {
 
     public PoemContent getPoemContent() {
         return mContentVm.getPoemContent();
+    }
+
+    public void setOnTitlebarContentChanged(PoemContentHome.OnTitleBarContentChanged onTitlebarContentChanged) {
+        mOnTitleBarContentChanged = onTitlebarContentChanged;
+    }
+
+    public void setPageIndex(int index) {
+        mPageIndex = index;
     }
 
 }

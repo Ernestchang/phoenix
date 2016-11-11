@@ -88,16 +88,6 @@ public class PoemContentHome extends PageImpl {
     }
 
     @Override
-    protected void onPageResume() {
-        super.onPageResume();
-
-        PoemContentPage currentPage = (PoemContentPage) mPageSwitcher.getCurrentPage();
-        if (currentPage != null) {
-            mPoemContent.setTitle(currentPage.getPoemContent().getTitle());
-        }
-    }
-
-    @Override
     protected void onPagePause() {
         if (mPageSwitcher != null) {
             mPageSwitcher.onViewPause();
@@ -162,12 +152,21 @@ public class PoemContentHome extends PageImpl {
 
             @Override
             public Page createPage(int position) {
-                PoemContentPage page;
+                final PoemContentPage page;
 
                 page = new PoemContentPage();
                 page.setContentId(mListContentIds.get(position));
                 page.needPringLog(false);
                 page.setSupportAnimation(false);
+                page.setPageIndex(position);
+                page.setOnTitlebarContentChanged(new OnTitleBarContentChanged() {
+                    @Override
+                    public void changeTitleBarContent(String title, int pageIndex) {
+                        if (mCurrentIndex == pageIndex) {
+                            mPoemContent.setTitle(title);
+                        }
+                    }
+                });
 
                 return page;
             }
@@ -194,6 +193,10 @@ public class PoemContentHome extends PageImpl {
             public void onPageScrollStateChanged(int state) {
             }
         });
+    }
+
+    public interface OnTitleBarContentChanged {
+        void changeTitleBarContent(String title, int pageIndex);
     }
 
 }
