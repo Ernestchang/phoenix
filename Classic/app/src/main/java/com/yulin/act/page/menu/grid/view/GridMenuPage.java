@@ -1,6 +1,7 @@
 package com.yulin.act.page.menu.grid.view;
 
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,8 +27,37 @@ import rx.Observer;
 
 public class GridMenuPage extends PageImpl {
 
-    private ShortMenuViewModel mShortMenuViewModel;
+    private static final String EXTRA_CATEGORY_ID = "extra_category_id";
+    private static final String EXTRA_CATEGORY_NAME = "extra_category_name";
+
     private boolean mIsMenuLoadComplete;
+    private int mCategoryId;
+    private String mCategoryName;
+
+    private ShortMenuViewModel mShortMenuViewModel;
+
+    public static void startPage(Module module, int categoryId, String categoryName) {
+        Bundle extras = new Bundle();
+        extras.putInt(EXTRA_CATEGORY_ID, categoryId);
+        extras.putString(EXTRA_CATEGORY_NAME, categoryName);
+
+        PageIntent pageIntent = new PageIntent(null, GridMenuPage.class);
+        pageIntent.setSupportAnimation(false);
+        pageIntent.setArguments(extras);
+        module.startPage(DataModule.G_CURRENT_FRAME, pageIntent);
+    }
+
+    @Override
+    protected void receiveData(Bundle extras) {
+        if (extras != null) {
+            if (extras.containsKey(EXTRA_CATEGORY_ID)) {
+                mCategoryId = extras.getInt(EXTRA_CATEGORY_ID);
+            }
+            if (extras.containsKey(EXTRA_CATEGORY_NAME)) {
+                mCategoryName = extras.getString(EXTRA_CATEGORY_NAME);
+            }
+        }
+    }
 
     @Override
     protected void initPage() {
@@ -78,7 +108,7 @@ public class GridMenuPage extends PageImpl {
                 public void onNext(Result result) {
 
                 }
-            });
+            }, mCategoryId);
         }
     }
 
@@ -96,7 +126,7 @@ public class GridMenuPage extends PageImpl {
         leftMenu.setTag(TitleBar.Position.LEFT);
         menu.addItem(leftMenu);
 
-        BarMenuTextItem centerMenu = new BarMenuTextItem(1, "诗经");
+        BarMenuTextItem centerMenu = new BarMenuTextItem(1, mCategoryName);
         centerMenu.setTag(TitleBar.Position.CENTER);
         centerMenu.setTextSize(Util.getRDimensionPixelSize(R.dimen.txt_s5));
         menu.addItem(centerMenu);
@@ -114,12 +144,6 @@ public class GridMenuPage extends PageImpl {
             mPageChangeFlag = -1;
             finish();
         }
-    }
-
-    public static void startPage(Module module) {
-        PageIntent pageIntent = new PageIntent(null, GridMenuPage.class);
-        pageIntent.setSupportAnimation(false);
-        module.startPage(DataModule.G_CURRENT_FRAME, pageIntent);
     }
 
     @Override

@@ -2,15 +2,13 @@ package com.yulin.act.page.menu.grid.vm;
 
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
-import android.databinding.ObservableList;
 
-import com.yulin.act.db.ShiJingHelper;
+import com.yulin.act.db.PoemHelper;
 import com.yulin.act.model.BaseItem;
 import com.yulin.act.model.Result;
 import com.yulin.act.page.base.BaseViewModel;
 import com.yulin.applib.page.Page;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -18,7 +16,6 @@ import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 public class ShortMenuViewModel extends BaseViewModel {
 
@@ -41,10 +38,10 @@ public class ShortMenuViewModel extends BaseViewModel {
     /**
      * 查询标题列表
      * */
-    public void queryMenu(Observer<Result> observer) {
+    public void queryMenu(Observer<Result> observer, int categoryId) {
         mListItems.clear();
 
-        Subscription subscription = ShiJingHelper.queryMenu()
+        Subscription subscription = PoemHelper.queryMenu(categoryId)
                 .flatMap(new Func1<List<BaseItem>, Observable<BaseItem>>() {
                     @Override
                     public Observable<BaseItem> call(List<BaseItem> baseItems) {

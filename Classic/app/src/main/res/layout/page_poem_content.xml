@@ -10,26 +10,31 @@
             type="PoemContent" />
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/b3">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:layout_height="match_parent"
+            android:background="@color/b3">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingMultiplier="1.2"
-                android:text="@{model.content}"
-                android:textColor="@color/t12"
-                android:textSize="@dimen/txt_s5" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:padding="12dp">
 
-    </ScrollView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{model.content}"
+                    android:textColor="@color/t12"
+                    android:textSize="@dimen/txt_s5" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </layout>

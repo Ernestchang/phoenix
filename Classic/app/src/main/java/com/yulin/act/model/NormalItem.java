@@ -9,6 +9,11 @@ public class NormalItem extends BaseItem {
     private ObservableInt mItemIconId;
     private int mContentId;
 
+    public NormalItem(short itemType, int contentId, String itemTitle, int itemIconId) {
+        this(itemType, itemTitle, itemIconId);
+        mContentId = contentId;
+    }
+
     public NormalItem(short itemType, int contentId, String itemTitle) {
         this(itemType, itemTitle, 0);
         mContentId = contentId;

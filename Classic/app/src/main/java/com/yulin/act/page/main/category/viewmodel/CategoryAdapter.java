@@ -63,7 +63,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             normalViewHolder.getBinding().layoutSelect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    GridMenuActivity.gotoModule(mPage);
+                    GridMenuActivity.gotoModule(mPage, normalItem.getContentId(), normalItem.getItemTitle());
                 }
             });
         }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="com.yulin.act.page.menu.grid.vm.ShortMenuViewModel" />
 
         <variable
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:recyclerAdapter="@{model.shortMenuAdapter}"
-            app:recyclerData="@{model.listItems}"/>
+            app:recyclerData="@{model.listItems}" />
     </LinearLayout>
 
 </layout>

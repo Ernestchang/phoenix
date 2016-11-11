@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 
+import com.yulin.act.model.Result;
 import com.yulin.act.page.base.PageImpl;
 import com.yulin.act.model.BaseItem;
 import com.yulin.act.page.main.category.viewmodel.CategoryViewModel;
@@ -14,7 +15,12 @@ import com.yulin.applib.bar.TitleBar;
 import com.yulin.classic.R;
 import com.yulin.classic.databinding.PageCategoryBinding;
 
+import rx.Observer;
+
 public class CategoryPage extends PageImpl {
+
+    private CategoryViewModel mCategoryViewModel;
+    private boolean mIsMenuLoadComplete;
 
     @Override
     protected void initPage() {
@@ -23,14 +29,14 @@ public class CategoryPage extends PageImpl {
         PageCategoryBinding pageBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.page_category, null, false);
         setContentView(pageBinding.getRoot());
 
-        final CategoryViewModel categoryViewModel = new CategoryViewModel(this);
+        mCategoryViewModel = new CategoryViewModel(this);
 
         pageBinding.pageCategoryRecyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                int itemType = categoryViewModel.getItem(position).getItemType();
+                int itemType = mCategoryViewModel.getItem(position).getItemType();
                 if (itemType == BaseItem.ITEM_TYPE_SECTION || itemType == BaseItem.ITEM_TYPE_BOTTOM) {
                     return 4;
                 } else {
@@ -40,9 +46,40 @@ public class CategoryPage extends PageImpl {
         });
         pageBinding.pageCategoryRecyclerView.setLayoutManager(gridLayoutManager);
 
-        pageBinding.setModel(categoryViewModel);
+        pageBinding.setModel(mCategoryViewModel);
 
         bindPageTitleBar(R.id.page_category_title_bar);
+    }
+
+    @Override
+    protected void onPageResume() {
+        super.onPageResume();
+
+        if (!mIsMenuLoadComplete) {
+            mCategoryViewModel.queryFirstTwoCategoryLevel(new Observer<Result>() {
+                @Override
+                public void onCompleted() {
+                    mIsMenuLoadComplete = true;
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Result result) {
+
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onPageDestroy() {
+        super.onPageDestroy();
+
+        mCategoryViewModel.clearSubscription();
     }
 
     @Override

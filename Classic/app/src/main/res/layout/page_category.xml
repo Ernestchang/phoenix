@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="com.yulin.act.page.main.category.viewmodel.CategoryViewModel" />
 
         <variable
@@ -26,7 +27,8 @@
             android:id="@+id/page_category_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:recyclerAdapter="@{model.categoryAdapter}"/>
+            app:recyclerAdapter="@{model.categoryAdapter}"
+            app:recyclerData="@{model.listItems}" />
 
     </LinearLayout>
 
