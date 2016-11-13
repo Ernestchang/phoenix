@@ -6,6 +6,7 @@ import android.databinding.ObservableInt;
 public class NormalItem extends BaseItem {
 
     private ObservableField<String> mItemTitle;
+    private ObservableField<String> mItemAuthorName;
     private ObservableInt mItemIconId;
     private int mContentId;
 
@@ -25,6 +26,13 @@ public class NormalItem extends BaseItem {
         mItemIconId = new ObservableInt(itemIconId);
     }
 
+    public NormalItem(short itemType, String itemTitle, String itemAuthorName, int itemContentId) {
+        super(itemType);
+        mItemTitle = new ObservableField<>(itemTitle);
+        mItemAuthorName = new ObservableField<>(itemAuthorName);
+        mContentId = itemContentId;
+    }
+
     public String getItemTitle() {
         return mItemTitle.get();
     }
@@ -35,6 +43,10 @@ public class NormalItem extends BaseItem {
 
     public int getContentId() {
         return mContentId;
+    }
+
+    public String getAuthorName() {
+        return mItemAuthorName.get();
     }
 
 }

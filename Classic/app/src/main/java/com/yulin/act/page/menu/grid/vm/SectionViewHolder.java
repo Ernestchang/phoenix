@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.yulin.classic.databinding.ItemShortMenuSectionBinding;
 
-class SectionViewHolder extends RecyclerView.ViewHolder {
+public class SectionViewHolder extends RecyclerView.ViewHolder {
 
     private ItemShortMenuSectionBinding mBinding;
 
-    SectionViewHolder(ItemShortMenuSectionBinding binding) {
+    public SectionViewHolder(ItemShortMenuSectionBinding binding) {
         super(binding.getRoot());
 
         mBinding = binding;

@@ -27,19 +27,24 @@ import rx.Observer;
 
 public class GridMenuPage extends PageImpl {
 
+    private static final short DEFAULT_SPAN_COUNT = 4;
+
     private static final String EXTRA_CATEGORY_ID = "extra_category_id";
     private static final String EXTRA_CATEGORY_NAME = "extra_category_name";
+    private static final String EXTRA_SPAN_COUNT = "extra_span_count";
 
     private boolean mIsMenuLoadComplete;
     private int mCategoryId;
+    private int mSpanCount;
     private String mCategoryName;
 
     private ShortMenuViewModel mShortMenuViewModel;
 
-    public static void startPage(Module module, int categoryId, String categoryName) {
+    public static void startPage(Module module, int categoryId, String categoryName, int spanCount) {
         Bundle extras = new Bundle();
         extras.putInt(EXTRA_CATEGORY_ID, categoryId);
         extras.putString(EXTRA_CATEGORY_NAME, categoryName);
+        extras.putInt(EXTRA_SPAN_COUNT, spanCount);
 
         PageIntent pageIntent = new PageIntent(null, GridMenuPage.class);
         pageIntent.setSupportAnimation(false);
@@ -56,6 +61,9 @@ public class GridMenuPage extends PageImpl {
             if (extras.containsKey(EXTRA_CATEGORY_NAME)) {
                 mCategoryName = extras.getString(EXTRA_CATEGORY_NAME);
             }
+            if (extras.containsKey(EXTRA_SPAN_COUNT)) {
+                mSpanCount = extras.getInt(EXTRA_SPAN_COUNT, DEFAULT_SPAN_COUNT);
+            }
         }
     }
 
@@ -69,13 +77,13 @@ public class GridMenuPage extends PageImpl {
         mShortMenuViewModel = new ShortMenuViewModel(this);
 
         pageBinding.pageShortMenuRecyclerView.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), mSpanCount);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 int itemType = mShortMenuViewModel.getItem(position).getItemType();
                 if (itemType == BaseItem.ITEM_TYPE_SECTION || itemType == BaseItem.ITEM_TYPE_BOTTOM) {
-                    return 4;
+                    return mSpanCount;
                 } else {
                     return 1;
                 }

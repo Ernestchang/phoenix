@@ -9,7 +9,8 @@ import android.widget.ImageView;
 
 import com.yulin.act.model.BaseItem;
 import com.yulin.act.page.main.category.viewmodel.CategoryAdapter;
-import com.yulin.act.page.menu.grid.vm.ShortMenuAdapter;
+import com.yulin.act.page.menu.grid.vm.GridMenuAdapter;
+import com.yulin.act.page.menu.list.vm.ListMenuAdapter;
 
 public class BindingAdapterInterface {
 
@@ -19,7 +20,12 @@ public class BindingAdapterInterface {
     }
 
     @BindingAdapter("recyclerAdapter")
-    public static void setRecyclerAdapter(RecyclerView recyclerView, ShortMenuAdapter adapter) {
+    public static void setRecyclerAdapter(RecyclerView recyclerView, GridMenuAdapter adapter) {
+        recyclerView.setAdapter(adapter);
+    }
+
+    @BindingAdapter("recyclerAdapter")
+    public static void setRecyclerAdapter(RecyclerView recyclerView, ListMenuAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
 
@@ -48,7 +54,7 @@ public class BindingAdapterInterface {
     }
 
     @BindingAdapter("android:src")
-    public static void setImageResource(ImageView imageView, int resource){
+    public static void setImageResource(ImageView imageView, int resource) {
         imageView.setImageResource(resource);
     }
 

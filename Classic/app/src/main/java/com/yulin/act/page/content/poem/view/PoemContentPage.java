@@ -7,6 +7,7 @@ import com.yulin.act.model.PoemContent;
 import com.yulin.act.model.Result;
 import com.yulin.act.page.base.PageImpl;
 import com.yulin.act.page.content.poem.vm.PoemContentVm;
+import com.yulin.act.util.LogUtil;
 import com.yulin.classic.R;
 import com.yulin.classic.databinding.PagePoemContentBinding;
 
@@ -54,8 +55,12 @@ public class PoemContentPage extends PageImpl {
                     mIsContentLoadComplete = true;
 
                     if (mOnTitleBarContentChanged != null) {
-                        mOnTitleBarContentChanged.changeTitleBarContent(mContentVm.getPoemContent().getTitle(), mPageIndex);
+                        mOnTitleBarContentChanged.changeTitleBarContent(
+                                mContentVm.getPoemContent().getTitle(),
+                                mContentVm.getPoemContent().getAuthor(), mPageIndex);
                     }
+
+                    LogUtil.log("open " + mContentId + " success.");
                 }
 
                 @Override

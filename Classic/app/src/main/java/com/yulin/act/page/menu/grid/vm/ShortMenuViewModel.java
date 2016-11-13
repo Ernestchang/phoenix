@@ -20,15 +20,15 @@ import rx.functions.Func1;
 public class ShortMenuViewModel extends BaseViewModel {
 
     private ObservableArrayList<BaseItem> mListItems;
-    private ObservableField<ShortMenuAdapter> mShortMenuAdapter;
+    private ObservableField<GridMenuAdapter> mGridMenuAdapter;
 
     public ShortMenuViewModel(Page page) {
         mListItems = new ObservableArrayList<>();
-        mShortMenuAdapter = new ObservableField<>(new ShortMenuAdapter(mListItems, page));
+        mGridMenuAdapter = new ObservableField<>(new GridMenuAdapter(mListItems, page));
     }
 
-    public ObservableField<ShortMenuAdapter> getShortMenuAdapter() {
-        return mShortMenuAdapter;
+    public ObservableField<GridMenuAdapter> getGridMenuAdapter() {
+        return mGridMenuAdapter;
     }
 
     public ObservableArrayList<BaseItem> getListItems() {
@@ -41,7 +41,7 @@ public class ShortMenuViewModel extends BaseViewModel {
     public void queryMenu(Observer<Result> observer, int categoryId) {
         mListItems.clear();
 
-        Subscription subscription = PoemHelper.queryMenu(categoryId)
+        Subscription subscription = PoemHelper.queryGridMenu(categoryId)
                 .flatMap(new Func1<List<BaseItem>, Observable<BaseItem>>() {
                     @Override
                     public Observable<BaseItem> call(List<BaseItem> baseItems) {

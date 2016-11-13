@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.yulin.classic.databinding.ItemShortMenuNormalBinding;
 
-public class NormalViewHolder extends RecyclerView.ViewHolder {
+class NormalViewHolder extends RecyclerView.ViewHolder {
 
     private ItemShortMenuNormalBinding mBinding;
 

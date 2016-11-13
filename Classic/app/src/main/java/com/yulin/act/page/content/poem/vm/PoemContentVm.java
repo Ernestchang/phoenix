@@ -32,7 +32,6 @@ public class PoemContentVm extends BaseViewModel {
                         mPoemContent.setSubTitle(poemContent.getSubTitle());
                         mPoemContent.setAuthor(poemContent.getAuthor());
                         mPoemContent.setDynastyName(poemContent.getDynastyName());
-                        mPoemContent.setGenreName(poemContent.getGenreName());
                         mPoemContent.setIntroduction(poemContent.getIntroduction());
                         mPoemContent.setContent(poemContent.getContent());
 

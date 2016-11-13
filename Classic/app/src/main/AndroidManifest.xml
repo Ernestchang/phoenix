@@ -26,6 +26,8 @@
         <activity android:name="com.yulin.act.page.menu.grid.view.GridMenuActivity" />
 
         <activity android:name="com.yulin.act.page.content.poem.view.PoemContentActivity" />
+
+        <activity android:name="com.yulin.act.page.menu.list.view.ListMenuActivity" />
     </application>
 
 </manifest>

@@ -17,19 +17,23 @@ import com.yulin.classic.databinding.ActivityMainBinding;
 
 public class MainActivity extends Module {
 
-    private int mCurrentIndex;
+    /*private int mCurrentIndex;
 
     private PageSwitcher mPageSwitcher;
 
     private ActivityPage mActivityPage;
     private CategoryPage mCategoryPage;
-    private MePage mMePage;
+    private MePage mMePage;*/
 
     @Override
     protected void initModule() {
         super.initModule();
 
-        ActivityMainBinding activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        DataBindingUtil.setContentView(this, R.layout.activity_frame);
+
+        CategoryPage.startPage(this);
+
+        /*ActivityMainBinding activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ToolBar toolBar = activityBinding.activityMainLayoutBottomBar;
         mPageSwitcher = activityBinding.activityMainPagerSwitcher;
 
@@ -67,7 +71,7 @@ public class MainActivity extends Module {
             mPageSwitcher.addPage(mMePage);
 
             registViewWithPage(mPageSwitcher);
-        }
+        }*/
     }
 
 }

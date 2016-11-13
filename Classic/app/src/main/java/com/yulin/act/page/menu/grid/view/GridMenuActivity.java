@@ -13,16 +13,21 @@ import com.yulin.classic.R;
  */
 public class GridMenuActivity extends Module {
 
+    private static final short DEFAULT_SPAN_COUNT = 4;
+
     private static final String EXTRA_CATEGORY_ID = "extra_category_id";
     private static final String EXTRA_CATEGORY_NAME = "extra_category_name";
+    private static final String EXTRA_SPAN_COUNT = "extra_span_count";
 
     private int mCategoryId;
+    private int mSpanCount;
     private String mCategoryName;
 
-    public static void gotoModule(Page page, int categoryId, String categoryName) {
+    public static void gotoModule(Page page, int categoryId, String categoryName, int spanCount) {
         Bundle extras = new Bundle();
         extras.putInt(EXTRA_CATEGORY_ID, categoryId);
         extras.putString(EXTRA_CATEGORY_NAME, categoryName);
+        extras.putInt(EXTRA_SPAN_COUNT, spanCount);
 
         page.startModule(extras, GridMenuActivity.class);
     }
@@ -39,6 +44,9 @@ public class GridMenuActivity extends Module {
             if (extras.containsKey(EXTRA_CATEGORY_NAME)) {
                 mCategoryName = extras.getString(EXTRA_CATEGORY_NAME);
             }
+            if (extras.containsKey(EXTRA_SPAN_COUNT)) {
+                mSpanCount = extras.getInt(EXTRA_SPAN_COUNT, DEFAULT_SPAN_COUNT);
+            }
         }
     }
 
@@ -48,7 +56,7 @@ public class GridMenuActivity extends Module {
 
         DataBindingUtil.setContentView(this, R.layout.activity_frame);
 
-        GridMenuPage.startPage(this, mCategoryId, mCategoryName);
+        GridMenuPage.startPage(this, mCategoryId, mCategoryName, mSpanCount);
     }
 
 }

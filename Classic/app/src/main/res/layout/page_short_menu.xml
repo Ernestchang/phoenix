@@ -27,7 +27,8 @@
             android:id="@+id/page_short_menu_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:recyclerAdapter="@{model.shortMenuAdapter}"
+            android:scrollbars="vertical"
+            app:recyclerAdapter="@{model.gridMenuAdapter}"
             app:recyclerData="@{model.listItems}" />
     </LinearLayout>
 

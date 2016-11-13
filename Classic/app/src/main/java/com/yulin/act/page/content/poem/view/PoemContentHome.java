@@ -161,9 +161,10 @@ public class PoemContentHome extends PageImpl {
                 page.setPageIndex(position);
                 page.setOnTitlebarContentChanged(new OnTitleBarContentChanged() {
                     @Override
-                    public void changeTitleBarContent(String title, int pageIndex) {
+                    public void changeTitleBarContent(String title, String author, int pageIndex) {
                         if (mCurrentIndex == pageIndex) {
                             mPoemContent.setTitle(title);
+                            mPoemContent.setAuthor(author);
                         }
                     }
                 });
@@ -181,6 +182,7 @@ public class PoemContentHome extends PageImpl {
                     PoemContentPage currentPage = (PoemContentPage) mPageSwitcher.getCurrentPage();
                     if (currentPage != null) {
                         mPoemContent.setTitle(currentPage.getPoemContent().getTitle());
+                        mPoemContent.setAuthor(currentPage.getPoemContent().getAuthor());
                     }
                 }
             }
@@ -196,7 +198,7 @@ public class PoemContentHome extends PageImpl {
     }
 
     public interface OnTitleBarContentChanged {
-        void changeTitleBarContent(String title, int pageIndex);
+        void changeTitleBarContent(String title, String author, int pageIndex);
     }
 
 }

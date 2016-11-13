@@ -59,7 +59,7 @@ public class PoemHelper {
 
     /**
      * 根据诗词id，获取指定诗词的内容
-     * */
+     */
     public static Observable<PoemContent> getPoemContentById(final int poemId) {
         return Observable.create(
                 new Observable.OnSubscribe<PoemContent>() {
@@ -68,10 +68,9 @@ public class PoemHelper {
                         SQLiteDatabase db = DbHelper.getSQLiteDb(Util.getContext());
 
                         try {
-                            String sql = "SELECT p._id, p.title, p.subtitle, a.name, d.name, g.name, p.introduction, p.content" +
+                            String sql = "SELECT p._id, p.title, p.subtitle, a.name, d.name, p.introduction, p.content" +
                                     " FROM poems p " +
                                     "JOIN author a ON p.author_id = a._id " +
-                                    "JOIN genre g ON p.genre_id = g._id " +
                                     "JOIN dynasty d ON p.dynasty_id = d._id " +
                                     "WHERE p._id = ? ";
                             Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(poemId)});
@@ -85,8 +84,7 @@ public class PoemHelper {
                                         cursor.getString(3),
                                         cursor.getString(4),
                                         cursor.getString(5),
-                                        cursor.getString(6),
-                                        cursor.getString(7)
+                                        cursor.getString(6)
                                 );
                             }
                             cursor.close();
@@ -111,10 +109,10 @@ public class PoemHelper {
     }
 
     /**
-     * 查询类型和标题
+     * 查询诗经列表
      * 用来显示标题列表
      */
-    public static Observable<List<BaseItem>> queryMenu(final int categoryId) {
+    public static Observable<List<BaseItem>> queryGridMenu(final int categoryId) {
         return Observable.create(
                 new Observable.OnSubscribe<List<BaseItem>>() {
                     @Override
@@ -148,14 +146,72 @@ public class PoemHelper {
                                 * */
 
                                 if (!sectionName.equals(preSectionName)) {
-                                    if (categoryId == 22) {
-                                        // 国风·召南
-                                        list.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, sectionTitle + "·" + sectionName));
-                                    } else {
-                                        list.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, sectionName));
-                                    }
+                                    // 国风·召南
+                                    list.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, sectionTitle + "·" + sectionName));
                                 }
                                 list.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, itemId, itemTitle));
+
+                                preSectionName = sectionName;
+                            }
+                            cursor.close();
+
+                            subscriber.onNext(list);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
+                            subscriber.onError(e);
+                        } finally {
+                            if (db != null)
+                                db.close();
+
+                            subscriber.onCompleted();
+                        }
+                    }
+                }
+        )
+                .subscribeOn(Schedulers.io());
+    }
+
+    /**
+     * 查询唐诗三百首列表
+     */
+    public static Observable<List<BaseItem>> queryListMenu(final int categoryId) {
+        return Observable.create(
+                new Observable.OnSubscribe<List<BaseItem>>() {
+                    @Override
+                    public void call(Subscriber<? super List<BaseItem>> subscriber) {
+                        SQLiteDatabase db = DbHelper.getSQLiteDb(Util.getContext());
+
+                        List<BaseItem> list = new ArrayList<>();
+
+                        try {
+                            String sql = "SELECT p._id, p.title, a.name, c1.name " +
+                                    "FROM poems p " +
+                                    "JOIN category c1 ON c1._id = p.category_id " +
+                                    "JOIN author a ON a._id = p.author_id " +
+                                    "WHERE p.collection_id == " + categoryId + " " +
+                                    "ORDER BY p.category_id, p._id";
+                            Cursor cursor = db.rawQuery(sql, null);
+
+                            // 记录前一个item的sectionName，默认为空
+                            String preSectionName = "";
+
+                            while (cursor.moveToNext()) {
+                                int itemId = cursor.getInt(0);
+                                String itemTitle = cursor.getString(1);
+                                String authorName = cursor.getString(2);
+                                String sectionName = cursor.getString(3);
+
+                                /*
+                                * 如果当前sectionName与前一个sectionName不同，表明新开始了一个section，
+                                * 先添加sectionItem开始这个section，然后正常添加normalItem。
+                                * 如果preSectionName为空，说明是第一个section开始，只用添加一个sectionItem。
+                                * */
+
+                                if (!sectionName.equals(preSectionName)) {
+                                    list.add(new SectionItem(BaseItem.ITEM_TYPE_SECTION, sectionName));
+                                }
+                                list.add(new NormalItem(BaseItem.ITEM_TYPE_NORMAL, itemTitle, authorName, itemId));
 
                                 preSectionName = sectionName;
                             }

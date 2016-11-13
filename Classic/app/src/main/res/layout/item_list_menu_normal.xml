@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.yulin.act.model.NormalItem" />
+
+        <variable
+            name="model"
+            type="NormalItem" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_item_height_1"
+        android:background="@drawable/selector_layout_item">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="@{model.itemTitle}"
+            android:textColor="@color/t11"
+            android:textSize="@dimen/txt_s4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:text="@{model.authorName}"
+            android:textColor="@color/t4"
+            android:textSize="@dimen/txt_s2"/>
+
+        <View
+            style="@style/line_5"
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+</layout>

@@ -10,6 +10,8 @@ import com.yulin.act.model.BaseItem;
 import com.yulin.act.model.NormalItem;
 import com.yulin.act.model.SectionItem;
 import com.yulin.act.page.menu.grid.view.GridMenuActivity;
+import com.yulin.act.page.menu.list.view.ListMenuActivity;
+import com.yulin.act.util.LogUtil;
 import com.yulin.applib.page.Page;
 import com.yulin.classic.BR;
 import com.yulin.classic.R;
@@ -63,7 +65,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             normalViewHolder.getBinding().layoutSelect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    GridMenuActivity.gotoModule(mPage, normalItem.getContentId(), normalItem.getItemTitle());
+                    // 如果是诗经，使用网格显示，其它使用列表显示
+                    int categoryId = normalItem.getContentId();
+                    String title = normalItem.getItemTitle();
+                    LogUtil.log("open " + title + ", categoryId is " + categoryId);
+                    if (categoryId == 22) {
+                        GridMenuActivity.gotoModule(mPage, categoryId, title, 4);
+                    } else {
+                        ListMenuActivity.gotoModule(mPage, categoryId, title);
+                    }
                 }
             });
         }

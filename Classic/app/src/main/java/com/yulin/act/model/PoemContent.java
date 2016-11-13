@@ -18,7 +18,6 @@ public class PoemContent extends BaseObservable {
     private String mSubTitle;
     private String mAuthor;
     private String mDynastyName;
-    private String mGenreName;
     private String mIntroduction;
     private String mContent;
 
@@ -27,13 +26,12 @@ public class PoemContent extends BaseObservable {
 
     // SELECT p._id, p.title, p.subtitle, a.name, d.name, g.name, p.introduction, p.content
     public PoemContent(int mContentId, String mTitle, String subTitle, String mAuthor, String mDynastyName,
-                       String genreName, String introduction, String mContent) {
+                       String introduction, String mContent) {
         this.mContentId = mContentId;
         this.mTitle = mTitle;
         this.mSubTitle = subTitle;
         this.mAuthor = mAuthor;
         this.mDynastyName = mDynastyName;
-        this.mGenreName = genreName;
         this.mIntroduction = introduction;
         this.mContent = mContent;
     }
@@ -84,16 +82,6 @@ public class PoemContent extends BaseObservable {
     public void setDynastyName(String mDynastyName) {
         this.mDynastyName = mDynastyName;
         notifyPropertyChanged(BR.dynastyName);
-    }
-
-    @Bindable
-    public String getGenreName() {
-        return mGenreName;
-    }
-
-    public void setGenreName(String mGenreName) {
-        this.mGenreName = mGenreName;
-        notifyPropertyChanged(BR.genreName);
     }
 
     @Bindable

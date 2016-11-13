@@ -12,9 +12,15 @@ import com.yulin.classic.BuildConfig;
 
 public class LogUtil {
 
+    private static final String DEFAULT_TAG = "tag_houchen";
+
     private static final int indexStack = 3;
 
     public static String customTagPrefix = "";
+
+    public static void log(String content) {
+        easylog(DEFAULT_TAG, content);
+    }
 
     public static void easylog(String tag, String content) {
         if (!BuildConfig.DEBUG)
