@@ -24,3 +24,5 @@ FROM poems AS p
 JOIN category AS c1 ON c1._id = p.category_id
 LEFT JOIN category AS c2 ON c1.parent_id = c2._id
 
+悬停标题
+https://github.com/davideas/FlexibleAdapter/wiki/5.x-%7C-Headers-and-Sections

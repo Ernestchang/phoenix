@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.provider.Settings;
+import android.text.Html;
+import android.text.TextUtils;
 
 /**
  * Created by liulei0905 on 2016/11/1.
@@ -50,6 +53,27 @@ public class Utils {
         }
 
         return -1;
+    }
+
+    //##############################################################################################   格式化显示   #####################
+    /**
+     * 使用html格式显示段落
+     * */
+    public static String formatHtmlString(String content) {
+        if (!TextUtils.isEmpty(content) && !content.contains("<p>")) {
+            String[] paras = content.split("\n");
+            StringBuilder buffer = new StringBuilder();
+            for (String para : paras) {
+                buffer.append("<p style=\"line-height: 1.5;color: blue;\">");
+                buffer.append(para);
+                buffer.append("</p>");
+            }
+
+            System.out.println(buffer.toString());
+            return Html.fromHtml(buffer.toString()).toString();
+        }
+
+        return content;
     }
 
 }
